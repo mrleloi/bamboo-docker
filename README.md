@@ -1,12 +1,12 @@
-# confluence
+# bamboo
 
 ---
-Please be sure to upgrade to the latest version(8.7.1 or 8.5.4), as this [bug](https://confluence.atlassian.com/security/cve-2023-22518-improper-authorization-vulnerability-in-confluence-data-center-and-server-1311473907.html).
+Please be sure to upgrade to the latest version(8.7.1 or 8.5.4), as this [bug](https://bamboo.atlassian.com/security/cve-2023-22518-improper-authorization-vulnerability-in-bamboo-data-center-and-server-1311473907.html).
 
 Related issues:
-+ [#38](https://github.com/haxqer/confluence/issues/38)
-+ [#39](https://github.com/haxqer/confluence/issues/39)
-+ [#46](https://github.com/haxqer/confluence/issues/46) (Thanks to: [pldavid2](https://github.com/pldavid2))
++ [#38](https://github.com/haxqer/bamboo/issues/38)
++ [#39](https://github.com/haxqer/bamboo/issues/39)
++ [#46](https://github.com/haxqer/bamboo/issues/46) (Thanks to: [pldavid2](https://github.com/pldavid2))
 
 ---
 [README](README.md) | [中文文档](README_zh.md)
@@ -15,22 +15,22 @@ default port: 8090
 
 + Latest Version: v8(8.7.1)
 + LTS Version: v8(8.5.4)
-+ Latest Chinese Version: [v7](https://github.com/haxqer/confluence/tree/latest-zh) (Thanks to: [sunny1025g](https://github.com/sunny1025g) for the `zh` image. [#issues/16](https://github.com/haxqer/confluence/issues/16) )
++ Latest Chinese Version: [v7](https://github.com/haxqer/bamboo/tree/latest-zh) (Thanks to: [sunny1025g](https://github.com/sunny1025g) for the `zh` image. [#issues/16](https://github.com/haxqer/bamboo/issues/16) )
 
 ## Requirement
 - docker-compose: 17.09.0+
 
 ## How to run with docker-compose
 
-- start confluence & mysql
+- start bamboo & mysql
 
 ```
-git clone https://github.com/haxqer/confluence.git \
-    && cd confluence \
+git clone https://github.com/haxqer/bamboo.git \
+    && cd bamboo \
     && docker-compose up
 ```
 
-- start confluence & mysql daemon
+- start bamboo & mysql daemon
 
 ```
 docker-compose up -d
@@ -40,28 +40,28 @@ docker-compose up -d
 
 ```bash
 driver=mysql
-host=mysql-confluence
+host=mysql-bamboo
 port=3306
-db=confluence
+db=bamboo
 user=root
 passwd=123456
 ```
 
 ## How to run with docker
 
-- start confluence
+- start bamboo
 
 ```
-docker volume create confluence_home_data && docker network create confluence-network && docker run -p 8090:8090 -v confluence_home_data:/var/confluence --network confluence-network --name confluence-srv -e TZ='Asia/Shanghai' haxqer/confluence:8.7.1
+docker volume create bamboo_home_data && docker network create bamboo-network && docker run -p 8090:8090 -v bamboo_home_data:/var/bamboo --network bamboo-network --name bamboo-srv -e TZ='Asia/Shanghai' haxqer/bamboo:8.7.1
 ```
 
 - config your own db:
 
 
-## How to hack confluence
+## How to hack bamboo
 
 ```
-docker exec confluence-srv java -jar /var/agent/atlassian-agent.jar \
+docker exec bamboo-srv java -jar /var/agent/atlassian-agent.jar \
     -d \
     -p conf \
     -m Hello@world.com \
@@ -70,15 +70,15 @@ docker exec confluence-srv java -jar /var/agent/atlassian-agent.jar \
     -s you-server-id-xxxx
 ```
 
-## How to hack confluence plugin
+## How to hack bamboo plugin
 
 - .eg I want to use BigGantt plugin
-1. Install BigGantt from confluence marketplace.
+1. Install BigGantt from bamboo marketplace.
 2. Find `App Key` of BigGantt is : `eu.softwareplant.biggantt`
 3. Execute :
 
 ```
-docker exec confluence-srv java -jar /var/agent/atlassian-agent.jar \
+docker exec bamboo-srv java -jar /var/agent/atlassian-agent.jar \
     -d \
     -p eu.softwareplant.biggantt \
     -m Hello@world.com \
@@ -93,8 +93,8 @@ docker exec confluence-srv java -jar /var/agent/atlassian-agent.jar \
 ## How to upgrade
 
 ```shell
-cd confluence && git pull
-docker pull haxqer/confluence:latest && docker-compose stop
+cd bamboo && git pull
+docker pull haxqer/bamboo:latest && docker-compose stop
 docker-compose rm
 ```
 
