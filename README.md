@@ -1,22 +1,5 @@
 # bamboo
 
----
-Please be sure to upgrade to the latest version(8.7.1 or 8.5.4), as this [bug](https://bamboo.atlassian.com/security/cve-2023-22518-improper-authorization-vulnerability-in-bamboo-data-center-and-server-1311473907.html).
-
-Related issues:
-+ [#38](https://github.com/haxqer/bamboo/issues/38)
-+ [#39](https://github.com/haxqer/bamboo/issues/39)
-+ [#46](https://github.com/haxqer/bamboo/issues/46) (Thanks to: [pldavid2](https://github.com/pldavid2))
-
----
-[README](README.md) | [中文文档](README_zh.md)
-
-default port: 8090
-
-+ Latest Version: v8(8.7.1)
-+ LTS Version: v8(8.5.4)
-+ Latest Chinese Version: [v7](https://github.com/haxqer/bamboo/tree/latest-zh) (Thanks to: [sunny1025g](https://github.com/sunny1025g) for the `zh` image. [#issues/16](https://github.com/haxqer/bamboo/issues/16) )
-
 ## Requirement
 - docker-compose: 17.09.0+
 
@@ -25,8 +8,8 @@ default port: 8090
 - start bamboo & mysql
 
 ```
-git clone https://github.com/haxqer/bamboo.git \
-    && cd bamboo \
+git clone https://github.com/mrleloi/bamboo-docker.git \
+    && cd bamboo-docker \
     && docker-compose up
 ```
 
@@ -63,7 +46,7 @@ docker volume create bamboo_home_data && docker network create bamboo-network &&
 ```
 docker exec bamboo-srv java -jar /var/agent/atlassian-agent.jar \
     -d \
-    -p conf \
+    -p bamboo \
     -m Hello@world.com \
     -n Hello@world.com \
     -o your-org \
