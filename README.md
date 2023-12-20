@@ -44,7 +44,7 @@ docker volume create bamboo_home_data && docker network create bamboo-network &&
 ## How to hack bamboo
 
 ```
-docker exec bamboo-srv java -jar /var/agent/atlassian-agent.jar \
+docker exec bamboo-server java -jar /var/agent/atlassian-agent.jar \
     -d \
     -p bamboo \
     -m Hello@world.com \
@@ -61,7 +61,7 @@ docker exec bamboo-srv java -jar /var/agent/atlassian-agent.jar \
 3. Execute :
 
 ```
-docker exec bamboo-srv java -jar /var/agent/atlassian-agent.jar \
+docker exec bamboo-server java -jar /var/agent/atlassian-agent.jar \
     -d \
     -p eu.softwareplant.biggantt \
     -m Hello@world.com \
