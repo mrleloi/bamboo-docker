@@ -6,10 +6,10 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    ports:             
-      - 54663:54663             
-      - 8085:8085         
-    volumes:             
+    ports:
+      - 54663:54663
+      - 8085:8085
+    volumes:
       - ./server:/var/atlassian/application-data/bamboo
     init: true # Recommended by Atlassian to properly reap zombie processes
     restart: always
@@ -18,6 +18,7 @@ services:
 
   bamboo-agent:
     image: leloimr/bamboo-agent:9.1.0
+    container_name: bamboo-agent
     build:
       context: .
       dockerfile: ./Dockerfile.agent
