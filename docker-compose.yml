@@ -16,6 +16,18 @@ services:
     networks:
       - network-bridge
 
+  bamboo-agent:
+    image: leloimr/bamboo-agent:9.1.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile.agent
+    environment:
+      - 'CATALINA_OPTS= -Xms256m -Xmx1g'
+      - 'BAMBOO_SERVER=http://bamboo-server:8085'
+    restart: always
+    networks:
+      - network-bridge
+
   #mysql:
   #  image: mysql:8.0
   #  container_name: mysql-bamboo
