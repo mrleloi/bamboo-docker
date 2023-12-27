@@ -4,7 +4,7 @@ LABEL maintainer="ledinhloi1997@gmail.com" version="8.7.1"
 
 ARG ATLASSIAN_PRODUCTION=atlassian-bamboo
 ARG APP_NAME=bamboo
-ARG APP_VERSION=9.1.0
+ARG APP_VERSION=9.2.9
 ARG AGENT_VERSION=1.3.3
 ARG MYSQL_DRIVER_VERSION=8.0.22
 

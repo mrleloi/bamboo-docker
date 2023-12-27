@@ -1,4 +1,4 @@
-FROM atlassian/bamboo-agent-base:9.1.0
+FROM atlassian/bamboo-agent-base:9.2.9
 USER root
 
 RUN apt-get update && \
