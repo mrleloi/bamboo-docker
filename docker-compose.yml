@@ -1,0 +1,80 @@
+version: '2'
+services:
+  bamboo-server:
+    image: leloimr/bamboo-server:9.2.9
+    container_name: bamboo-server
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 54663:54663
+      - 8085:8085
+    volumes:
+      - bamboo-server:/var/atlassian/application-data/bamboo
+      - bamboo-dir:/opt/bamboo
+      - ./atlassian-extras-3.4.6.jar:/opt/atlassian/bamboo/atlassian-jira/WEB-INF/lib/atlassian-extras-3.4.6.jar:ro
+    # init: true # Recommended by Atlassian to properly reap zombie processes
+    restart: always
+    networks:
+      - network-bridge
+
+#   bamboo-agent:
+#     image: leloimr/bamboo-agent:9.2.9
+#     container_name: bamboo-agent
+#     build:
+#       context: .
+#       dockerfile: ./Dockerfile.agent
+#     volumes:
+#       - bamboo-agent:/var/atlassian/application-data/bamboo-agent
+#     environment:
+#       - 'CATALINA_OPTS= -Xms256m -Xmx1g'
+#       - 'BAMBOO_SERVER=http://bamboo-server:8085'
+#     restart: always
+#     networks:
+#       - network-bridge
+
+  #mysql:
+  #  image: mysql:8.0
+  #  container_name: mysql-bamboo
+  #  environment:
+  #    - TZ=Asia/Ho_Chi_Minh
+  #    - MYSQL_DATABASE=bamboo
+  #    - MYSQL_ROOT_PASSWORD=123456
+  #    - MYSQL_USER=bamboo
+  #    - MYSQL_PASSWORD=123123
+  #  command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin', '--transaction-isolation=READ-COMMITTED', '--innodb_log_file_size=256M', '--max_allowed_packet=256M','--log_bin_trust_function_creators=1']
+  #  volumes:
+  #    - mysql_data:/var/lib/mysql
+  #  restart: always
+  #  networks:
+  #    - network-bridge
+
+#   postgres:
+#      image: postgres:latest
+#      container_name: bamboo-postgressql
+#      environment:
+#       PGDATA: /var/lib/postgresql/data/pgdata
+#       POSTGRES_DB: bamboo
+#       POSTGRES_USER: bamboo
+#       POSTGRES_PASSWORD: 123123
+#      volumes:
+#       - postgres_data:/var/lib/postgresql/data/pgdata
+#      restart: always
+#      networks:
+#       - network-bridge
+
+networks:
+  network-bridge:
+    driver: bridge
+
+volumes:
+  bamboo-server:
+    external: false
+  bamboo-dir:
+    external: false
+#   bamboo-agent:
+#     external: false
+  #mysql_data:
+  #  external: false
+#   postgres_data:
+#     external: false
